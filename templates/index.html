@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lung Cancer Detector</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>Lung Cancer Detection</h1>
+
+        <label class="upload-label">
+            Select CT Scan Image
+            <input type="file" id="imageInput" accept="image/*">
+        </label>
+
+        <div class="preview-box">
+            <img id="preview" src="#" alt="Preview">
+            <span id="preview-text">Preview</span>
+        </div>
+
+        <button class="predict-btn" onclick="uploadImage()">Predict</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const input = document.getElementById("imageInput");
+        const preview = document.getElementById("preview");
+        const previewText = document.getElementById("preview-text");
+
+        input.onchange = () => {
+            const file = input.files[0];
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+            previewText.style.display = "none";
+        };
+
+        async function uploadImage() {
+            const file = input.files[0];
+            if (!file) {
+                alert("Please select an image first.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const res = await fetch("/predict", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await res.json();
+
+            document.getElementById("result").innerHTML =
+                `<span class="${data.prediction === 'Cancer' ? 'error' : 'success'}">
+                    Prediction: ${data.prediction}<br>
+                    Confidence: ${data.confidence}%
+                </span>`;
+        }
+    </script>
+
+</body>
+</html>

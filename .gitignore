@@ -1,0 +1,8 @@
+*.mp4
+*.mov
+*.avi
+output/
+__pycache__/
+*.h5
+.env
+

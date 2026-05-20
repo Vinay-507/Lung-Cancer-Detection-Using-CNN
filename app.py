@@ -140,8 +140,4 @@ def predict():
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     app.run(host="0.0.0.0", port=8000, debug=True, use_reloader=False)
-=======
-    app.run(host="127.0.0.1", port=8000, debug=True, use_reloader=False)
->>>>>>> 8d82c4456b583c06f9ccdf5dd6e8dd3de2a051fb

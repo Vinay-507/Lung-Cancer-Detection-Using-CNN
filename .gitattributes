@@ -1,2 +1,5 @@
 *.h5 filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+=======
+>>>>>>> 8d82c4456b583c06f9ccdf5dd6e8dd3de2a051fb
